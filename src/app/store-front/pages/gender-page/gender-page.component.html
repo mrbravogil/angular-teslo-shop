@@ -1,0 +1,25 @@
+<section class="px-5 md:px-0">
+<h1 class="text-3xl font-bold font-montserrat">
+    Todos los productos
+    <span class="text-accent">{{ gender() | titlecase}}</span>
+</h1>
+</section>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2">
+
+    @for (product of productsResource.value()?.products; track product.id; let i = $index) {
+    
+    
+        <product-card [product]="product"  />
+    
+    } @empty {
+           <p>No hay productos</p> 
+
+    }
+
+</div>
+
+<app-pagination 
+[pages]="productsResource.value()?.pages ?? 0"
+[currentPage]="paginationService.currentPage()"
+/>
